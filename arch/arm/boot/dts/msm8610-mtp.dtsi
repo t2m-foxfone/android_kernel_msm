@@ -361,7 +361,7 @@
 
 &pm8110_chg {
 	status = "ok";
-	qcom,charging-disabled;
+//	qcom,charging-disabled;
 
 	qcom,chgr@1000 {
 		status = "ok";
