@@ -16,8 +16,15 @@
 DEFINE_MSM_MUTEX(ov5648_mut);
 
 static struct msm_sensor_ctrl_t ov5648_s_ctrl;
+//[FEATURE]-Add-BEGIN by T2M.xiezk, 19/01/2015,PR907070 add rear camera into kernel for foxone-l
 
 static struct msm_sensor_power_setting ov5648_power_setting[] = {
+	{
+		.seq_type = CAM_VDIG,
+		.seq_val = CAM_VIO,
+		.config_val = 0,
+		.delay = 0,
+	},
 	{
 		.seq_type = SENSOR_VREG,
 		.seq_val = CAM_VIO,
@@ -26,19 +33,13 @@ static struct msm_sensor_power_setting ov5648_power_setting[] = {
 	},
 	{
 		.seq_type = SENSOR_GPIO,
-		.seq_val = SENSOR_GPIO_VDIG,
-		.config_val = GPIO_OUT_LOW,
-		.delay = 5,
-	},
-	{
-		.seq_type = SENSOR_GPIO,
-		.seq_val = SENSOR_GPIO_VDIG,
+		.seq_val = SENSOR_GPIO_VANA,
 		.config_val = GPIO_OUT_HIGH,
 		.delay = 5,
 	},
 	{
 		.seq_type = SENSOR_VREG,
-		.seq_val = CAM_VANA,
+		.seq_val = CAM_VAF,
 		.config_val = 0,
 		.delay = 5,
 	},
@@ -79,7 +80,7 @@ static struct msm_sensor_power_setting ov5648_power_setting[] = {
 		.delay = 0,
 	},
 };
-
+//[FEATURE]-Add-END by T2M.xiezk
 static struct v4l2_subdev_info ov5648_subdev_info[] = {
 	{
 		.code   = V4L2_MBUS_FMT_SBGGR10_1X10,

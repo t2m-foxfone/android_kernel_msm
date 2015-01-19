@@ -33,7 +33,7 @@
 
 	actuator0: qcom,actuator@6e {
 		cell-index = <3>;
-		reg = <0x6c>;
+		reg = <0x18>;
 		compatible = "qcom,actuator";
 		qcom,cci-master = <0>;
 	};
@@ -109,6 +109,7 @@
 		qcom,cam-power-seq-cfg-val = <1 1 24000000 1 1>;
 		qcom,cam-power-seq-delay = <1 1 5 5 10>;
 	};
+//[FEATURE]-Add-BEGIN by T2M.xiezk, 19/01/2015,PR907070 add rear camera into kernel for foxone-l
 
 	qcom,camera@6f {
 		compatible = "qcom,ov8825";
@@ -149,7 +150,54 @@
 		qcom,cci-master = <0>;
 	};
 
-	qcom,camera@34 {
+
+	
+	qcom,camera@6c {
+                compatible = "ovti,ov5648";
+                reg = <0x6c>;
+                qcom,slave-id = <0x6c 0x300a 0x5648>;
+                qcom,csiphy-sd-index = <0>;
+                qcom,csid-sd-index = <0>;
+ //       qcom,actuator-src = <&actuator0>;
+//                qcom,led-flash-src = <&led_flash0>;
+                qcom,mount-angle = <90>;
+                qcom,sensor-name = "skuf_ov5648_p5v23c";
+                cam_vdig-supply = <&pm8110_l7>;
+                cam_vio-supply = <&pm8110_l14>;
+                cam_vana-supply = <&pm8110_l19>;
+                cam_vaf-supply = <&pm8110_l16>;
+                qcom,cam-vreg-name = "cam_vdig", "cam_vio", "cam_vana", "cam_vaf";
+                qcom,cam-vreg-type = <0 0 0 0>;
+                qcom,cam-vreg-min-voltage = <1500000 1800000 2850000 3000000>;
+                qcom,cam-vreg-max-voltage = <1500000 1800000 2850000 3000000>;
+                qcom,cam-vreg-op-mode = <200000 8000 80000 100000>;
+                qcom,gpio-no-mux = <0>;
+                gpios = <&msmgpio 13 0>,
+                                <&msmgpio 21 0>,//reset
+                                <&msmgpio 20 0>,//stanby
+                                <&msmgpio 7 0>, //avdd_en
+                                <&msmgpio 6 0>; //af_en
+                qcom,gpio-reset = <1>;
+                qcom,gpio-standby = <2>;
+                qcom,gpio-vana = <3>;
+                qcom,gpio-af-pwdm = <4>;
+                qcom,gpio-req-tbl-num = <0 1 2 3 4>;
+                qcom,gpio-req-tbl-flags = <1 0 0 0 0>;
+                qcom,gpio-req-tbl-label = "CAMIF_MCLK",
+                        "CAM_RESET",
+                        "CAM_STANDBY",
+                        "CAM_AVDDEN",
+                        "CAM_VCMPWDN";
+                qcom,csi-lane-assign = <0xe4>;
+                qcom,csi-lane-mask = <0x3>;
+                qcom,sensor-position = <0>;
+                qcom,sensor-mode = <1>;
+                qcom,sensor-type = <0>;
+                qcom,cci-master = <0>;
+                status = "ok";
+    };
+
+/*	qcom,camera@34 {
 		compatible = "sne,imx134";
 		reg = <0x34>;
 		qcom,slave-id = <0x34 0x0016 0x0134>;
@@ -261,6 +309,7 @@
 		qcom,sensor-mode = <1>;
 		qcom,cci-master = <0>;
 	};
+*/
 	qcom,camera@0 {
 		cell-index = <0>;
 		compatible = "qcom,camera";
@@ -268,8 +317,8 @@
 		qcom,csiphy-sd-index = <0>;
 		qcom,csid-sd-index = <0>;
 		qcom,mount-angle = <90>;
-		qcom,actuator-src = <&actuator0>;
-		qcom,led-flash-src = <&led_flash0>;
+//		qcom,actuator-src = <&actuator0>;
+//		qcom,led-flash-src = <&led_flash0>;
 		cam_vdig-supply = <&pm8110_l2>;
 		cam_vana-supply = <&pm8110_l19>;
 		cam_vio-supply = <&pm8110_l14>;
@@ -328,5 +377,5 @@
 		qcom,cci-master = <0>;
 		status = "ok";
 	};
-
+//[FEATURE]-Add-END by T2M.xiezk
 };
