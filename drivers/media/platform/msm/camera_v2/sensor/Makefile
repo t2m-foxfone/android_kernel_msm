@@ -16,3 +16,6 @@ obj-$(CONFIG_OV5648) += ov5648.o
 obj-$(CONFIG_MT9M114) += mt9m114.o
 obj-$(CONFIG_SP1628) += sp1628.o
 obj-$(CONFIG_GC0339) += gc0339.o
+#//[FEATURE]-Add-BEGIN by T2M.xiezk, 19/01/2015,PR907070 add hi258 camera into kernel for foxone-l
+obj-$(CONFIG_HI258) += hi258.o
+#//[FEATURE]-Add-END by T2M.xiezk

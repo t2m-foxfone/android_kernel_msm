@@ -3015,7 +3015,7 @@ static struct clk_lookup msm_clocks_8610[] = {
 							 "fd010000.qcom,iommu"),
 	CLK_LOOKUP("core_clk",         pnoc_iommu_clk.c, "fd010000.qcom,iommu"),
 //[FEATURE]-Add-BEGIN by T2M.xiezk, 19/01/2015,PR907070 add rear camera into kernel for foxone-l
-
+//[FEATURE]-Add-BEGIN by T2M.xiezk, 19/01/2015,PR907070 add hi258 camera into kernel for foxone-l
 	/* MM sensor clocks */
 	CLK_LOOKUP("cam_src_clk", mclk0_clk_src.c, "6-006f"),
 	CLK_LOOKUP("cam_src_clk", mclk0_clk_src.c, "6-0034"),
@@ -3026,6 +3026,7 @@ static struct clk_lookup msm_clocks_8610[] = {
 	CLK_LOOKUP("cam_src_clk", mclk1_clk_src.c, "6-0078"),
 	CLK_LOOKUP("cam_src_clk", mclk0_clk_src.c, "6-0020"),
 	CLK_LOOKUP("cam_src_clk", mclk0_clk_src.c, "6-006a"),
+	CLK_LOOKUP("cam_src_clk", mclk1_clk_src.c, "6-0040"),
 	CLK_LOOKUP("cam_src_clk", mclk0_clk_src.c, "6-006c"),
 	CLK_LOOKUP("cam_clk", mclk0_clk.c, "6-006f"),
 	CLK_LOOKUP("cam_clk", mclk0_clk.c, "6-0034"),
@@ -3036,8 +3037,9 @@ static struct clk_lookup msm_clocks_8610[] = {
 	CLK_LOOKUP("cam_clk", mclk1_clk.c, "6-0078"),
 	CLK_LOOKUP("cam_clk", mclk0_clk.c, "6-0020"),
 	CLK_LOOKUP("cam_clk", mclk0_clk.c, "6-006a"),
+        CLK_LOOKUP("cam_clk", mclk1_clk.c, "6-0040"),
 	CLK_LOOKUP("cam_clk", mclk0_clk.c, "6-006c"),
-
+//[FEATURE]-Add-END by T2M.xiezk
 //[FEATURE]-Add-END by T2M.xiezk
 	/* CSIPHY clocks */
 	CLK_LOOKUP("csiphy_timer_src_clk", csi0phytimer_clk_src.c,

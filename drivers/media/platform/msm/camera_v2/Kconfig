@@ -199,6 +199,16 @@ config OV12830
 		4 mipi lanes, preview config = 2112 * 1500 at 30 fps,
 		snapshot config = 4224 * 3000 at 15 fps.
 		2 lanes max fps is 18, 4 lanes max fps is 24.
+#[FEATURE]-Add-BEGIN by T2M.xiezk, 19/01/2015,PR907070 add hi258 camera into kernel for foxone-l
+config HI258
+        bool "Hynix hi258 (YUV 2MP)"
+        depends on MSMB_CAMERA
+        ---help---
+                OmniVision 8 MP Bayer Sensor with auto focus.uses
+                2 mipi lanes, preview config = 1632*1224 30 fps,
+                snapshot config = 3264 * 2448 at 18 fps.
+                2 lanes max fps is 18, 4 lanes max fps is 24.
+#[FEATURE]-Add-END by T2M.xiezk
 
 config MSM_V4L2_VIDEO_OVERLAY_DEVICE
 	tristate "Qualcomm MSM V4l2 video overlay device"
