@@ -92,7 +92,22 @@
 			synaptics,disable-gpios;
 		};
 	};
-
+//[FEATURE]-Add-BEGIN by T2M.xiezk, 20/01/2015,PR908442 add flash led into kernel for foxone-l	
+	 i2c@f9924000 {
+           flashlight: qcom,led-flash {
+               cell-index = <0>;
+               reg = <0x30>;
+               qcom,slave-id = <0x30 0x00 0xb2>;
+               compatible = "qcom,led-flash";
+               linux,name = "flashlight";
+               qcom,current = <158>;
+               //qcom,gpio-flash = <&msmgpio 18 0>;
+               qcom,gpio-torch = <&msmgpio 19 0>;
+               qcom,gpio-strobe = <&msmgpio 18 0>;
+               linux,default-trigger = "flashlight-trigger";
+           };
+        };
+//[FEATURE]-Add-END by T2M.xiezk
 	gen-vkeys {
 		compatible = "qcom,gen-vkeys";
 		label = "atmel_mxt_ts";

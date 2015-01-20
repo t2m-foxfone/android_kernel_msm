@@ -11,8 +11,19 @@
  * GNU General Public License for more details.
  */
 
-&i2c {
+//[FEATURE]-Add-BEGIN by T2M.xiezk, 20/01/2015,PR908442 add flash led into kernel for foxone-l
+&soc {
+     led_flash0: qcom,camera-led-flash {
+        cell-index = <0>;
+        compatible = "qcom,camera-led-flash";
+        qcom,flash-type = <1>;
+        qcom,flash-source = <&flashlight>;
+    };
+};
+//[FEATURE]-Add-END by T2M.xiezk
 
+&i2c {
+/*
 	led_flash0: qcom,led-flash@60 {
 		cell-index = <0>;
 		reg = <0x60>;
@@ -30,7 +41,7 @@
 		qcom,gpio-req-tbl-label = "FLASH_EN",
 			"FLASH_NOW";
 	};
-
+*/
 	actuator0: qcom,actuator@6e {
 		cell-index = <3>;
 		reg = <0x18>;
@@ -158,8 +169,10 @@
                 qcom,slave-id = <0x6c 0x300a 0x5648>;
                 qcom,csiphy-sd-index = <0>;
                 qcom,csid-sd-index = <0>;
- //       qcom,actuator-src = <&actuator0>;
-//                qcom,led-flash-src = <&led_flash0>;
+ //       qcom,actuator-src = <&actuator0>
+//[FEATURE]-Add-BEGIN by T2M.xiezk, 20/01/2015,PR908442 add flash led into kernel for foxone-l
+                qcom,led-flash-src = <&led_flash0>;
+//[FEATURE]-Add-END by T2M.xiezk
                 qcom,mount-angle = <90>;
                 qcom,sensor-name = "skuf_ov5648_p5v23c";
                 cam_vdig-supply = <&pm8110_l7>;
