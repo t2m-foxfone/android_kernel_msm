@@ -166,7 +166,7 @@
 #define STK_FLG_NF_MASK			0x01
 
 /* misc define */
-#define MIN_ALS_POLL_DELAY_NS	110000000
+#define MIN_ALS_POLL_DELAY_NS	1100000
 
 #define DEVICE_NAME		"stk_ps"
 #define ALS_NAME		"stk3x1x-ls"
@@ -182,13 +182,13 @@
 #define MAX_FIR_LEN 32
 
 static struct sensors_classdev sensors_light_cdev = {
-	.name = "stk3x1x-light",
+	.name = ALS_NAME,
 	.vendor = "Sensortek",
 	.version = 1,
 	.handle = SENSORS_LIGHT_HANDLE,
 	.type = SENSOR_TYPE_LIGHT,
-	.max_range = "6500",
-	.resolution = "0.0625",
+	.max_range = "4096",
+	.resolution = "1.0",
 	.sensor_power = "0.09",
 	.min_delay = (MIN_ALS_POLL_DELAY_NS / 1000),	/* us */
 	.fifo_reserved_event_count = 0,
@@ -200,7 +200,7 @@ static struct sensors_classdev sensors_light_cdev = {
 };
 
 static struct sensors_classdev sensors_proximity_cdev = {
-	.name = "stk3x1x-proximity",
+	.name = PS_NAME,
 	.vendor = "Sensortek",
 	.version = 1,
 	.handle = SENSORS_PROXIMITY_HANDLE,
@@ -2063,7 +2063,12 @@ static int stk3x1x_power_ctl(struct stk3x1x_data *data, bool on)
 		if (ret) {
 			dev_err(&data->client->dev,
 				"Regulator vio disable failed ret=%d\n", ret);
-			regulator_enable(data->vdd);
+			ret = regulator_enable(data->vdd);
+			if (ret) {
+				dev_err(&data->client->dev,
+					"Regulator vdd enable failed ret=%d\n",
+					ret);
+			}
 			return ret;
 		}
 		data->power_enabled = on;
