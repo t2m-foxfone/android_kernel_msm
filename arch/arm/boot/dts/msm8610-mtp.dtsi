@@ -208,12 +208,13 @@
         qcom,audio-routing =
             "RX_BIAS", "MCLK",
             "INT_LDO_H", "MCLK",
-            "MIC BIAS External", "Handset Mic",
+            "Lineout amp", "LINEOUT",
+            "MIC BIAS Internal1", "Handset Mic",
             "MIC BIAS Internal2", "Headset Mic",
-            "MIC BIAS External", "Secondary Mic",
-            "AMIC1", "MIC BIAS External",
-            "AMIC2", "MIC BIAS Internal2",
-            "AMIC3", "MIC BIAS External";
+            "AMIC1", "MIC BIAS Internal1",
+            "AMIC2", "MIC BIAS Internal2";
+
+        qcom,ext-spk-amp-gpio = <&msmgpio 92 0x0>;
     };
 };
 
