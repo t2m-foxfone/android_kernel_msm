@@ -383,6 +383,10 @@ static void mdss_dsi_panel_bl_ctrl(struct mdss_panel_data *pdata,
 	if ((bl_level < pdata->panel_info.bl_min) && (bl_level != 0))
 		bl_level = pdata->panel_info.bl_min;
 
+    //[FEATURE]-Add-BEGIN by T2M.LeiHui,30/1/2015,919545,MS will flash a white screen when press power key
+    if (0 != bl_level)
+        msleep(150);
+	//[FEATURE]-Add-END by T2M. LeiHui
 	switch (ctrl_pdata->bklt_ctrl) {
 	case BL_WLED:
 		led_trigger_event(bl_led_trigger, bl_level);
