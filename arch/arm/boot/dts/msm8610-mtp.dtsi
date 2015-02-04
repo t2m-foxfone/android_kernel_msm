@@ -16,83 +16,84 @@
 	};
 
 	i2c@f9923000{
-		atmel_mxt_ts@4a {
-		compatible = "atmel,mxt-ts";
-		reg = <0x4a>;
-		interrupt-parent = <&msmgpio>;
-		interrupts = <1 0x2002>;
-		vdd_ana-supply = <&pm8110_l19>;
-		vcc_i2c-supply = <&pm8110_l14>;
-		atmel,reset-gpio = <&msmgpio 0 0x00>;
-		atmel,irq-gpio = <&msmgpio 1 0x00>;
-		atmel,panel-coords = <0 0 508 880>;
-		atmel,display-coords = <0 0 480 800>;
-		atmel,i2c-pull-up;
-		atmel,no-force-update;
-		atmel,no-lpm-support;
-		atmel,cfg_1 {
-			atmel,family-id = <0x81>;
-			atmel,variant-id = <0x15>;
-			atmel,version = <0x11>;
-			atmel,build = <0xaa>;
-			atmel,config = [
-				/* Object 6, Instance = 0 */
-				00 00 00 00 00 00
-				/* Object 38, Instance = 0 */
-				1D 05 00 1D 0B 0D 00 00
-				/* Object 7, Instance = 0 */
-				20 0A 32
-				/* Object 8, Instance = 0 */
-				19 00 14 14 FF 00 05 00 32 19
-				/* Object 9, Instance = 0 */
-				83 00 00 13 0B 00 20 32 01 03
-				00 0A 05 30 0A 05 0A 00 70 03
-				FC 01 04 2F 08 24 00 00 40 00
-				00 0A 00 00 02
-				/* Object 18, Instance = 0 */
-				00 00
-				/* Object 19, Instance = 0 */
-				00 00 00 00 00 00
-				/* Object 25, Instance = 0 */
-				03 00 18 79 A8 61
-				/* Object 58, Instance = 0 */
-				00 00 00 00 00 00 00 00 00 00
-				00
-				/* Object 42, Instance = 0 */
-				03 19 1E 14 80 05 00 00
-				/* Object 46, Instance = 0 */
-				04 03 08 10 00 00 00 00 00
-				/* Object 47, Instance = 0 */
-				00 00 00 00 00 00 00 00 00 00
-				/* Object 48, Instance = 0 */
-				1D C0 22 00 00 00 00 00 00 00
-				20 19 00 06 06 00 00 64 04 40
-				00 00 00 05 00 2A 00 00 00 19
-				34 0C 00 00 00 00 00 00 00 00
-				00 00 00 00 00 00 00 00 00 00
-				00 00 00 00
-				/* Object 55, Instance = 0 */
-				00 00 00 00
-				];
-			};
-		};
 
-		synaptics@20 {
-			compatible = "synaptics,rmi4";
-			reg = <0x20>;
+		Goodix-TS@5d {
+			compatible = "Goodix-TS,gt915";
+			reg = <0x5d>;
 			interrupt-parent = <&msmgpio>;
-			interrupts = <1 0x2002>;
+			interrupts = <1 0x2>;
 			vdd-supply = <&pm8110_l19>;
 			vcc_i2c-supply = <&pm8110_l14>;
-			synaptics,reset-gpio = <&msmgpio 0 0x00>;
-			synaptics,irq-gpio = <&msmgpio 1 0x2008>;
-			synaptics,button-map = <139 102 158>;
-			synaptics,i2c-pull-up;
-			synaptics,power-down;
-			synaptics,disable-gpios;
+			goodix,name = "Goodix-TS";
+			goodix,reset-gpios = <&msmgpio 0 0x00>;
+			goodix,interrupt-gpios = <&msmgpio 1 0x00>;	
+			goodix,no-force-update;
+			goodix,i2c-pull-up;
+			goodix,family-id = <0x0>;	
+			goodix,panel-coords = <0 0 481 940>;
+			goodix,display-coords = <0 0 480 854>;
+		/*	goodix,button-map= <158 102 139>;
+			goodix,cfg-data = [			
+			 47 1C 02 C0 03 05 34 01 02 0F 
+			 23 08 50 3C 03 05 00 00 00 00 
+			 12 00 00 14 14 1C 14 89 08 0B 
+			 37 00 B8 08 00 00 00 9A 33 1D 
+			 00 11 02 00 00 00 00 00 00 00 
+			 00 2C 6E 94 D5 02 05 00 00 04 
+			 8F 30 00 7A 3A 00 6A 45 00 5C 
+			 53 00 52 64 00 52 10 30 50 00 
+			 F0 80 50 FF FF 27 60 50 33 00 
+			 04 00 00 00 00 00 00 00 00 00 
+			 00 00 00 00 00 00 00 00 00 00 
+			 00 00 02 04 06 08 0A 0C 0E 10 
+			 12 14 16 FF FF FF 00 00 00 00 
+			 00 00 00 00 00 00 00 00 00 00 
+			 00 00 21 20 1F 1E 1D 1C 18 16 
+			 12 10 0F 0A 08 06 04 02 00 FF 
+			 FF FF FF FF FF FF FF FF 00 00 
+			 00 FF FF FF FF FF FF FF FF FF 
+			 FF FF FF FF F2 01
+				];*/
+ 			/*label = "ft5x06_ts,Goodix-TS";*/
+			/*
+			goodix,disp-maxx = <540>;
+			goodix,disp-maxy = <960>;
+			goodix,pan-maxx = <541>;
+			goodix,pan-maxy = <1060>;
+			goodix,key-codes = <158 102 139>;
+			goodix,y-offset = <0>;
+			*/
 		};
 	};
 
+	gen-vkeys {
+		compatible = "qcom,gen-vkeys";
+		label = "ft5x06_ts";
+		qcom,disp-maxx = <480>;
+		qcom,disp-maxy = <854>;
+		qcom,panel-maxx = <481>;
+		qcom,panel-maxy = <940>;
+		qcom,key-codes = <102>;//<139 0 102 158 0 0 0>;
+		qcom,y-offset = <0>;
+
+	};
+
+//[FEATURE]-Add-BEGIN by T2M.xiezk, 20/01/2015,PR908442 add flash led into kernel for foxone-l
+       i2c@f9924000 {
+           flashlight: qcom,led-flash {
+               cell-index = <0>;
+               reg = <0x30>;
+               qcom,slave-id = <0x30 0x00 0xb2>;
+               compatible = "qcom,led-flash";
+               linux,name = "flashlight";
+               qcom,current = <158>;
+               //qcom,gpio-flash = <&msmgpio 18 0>;
+               qcom,gpio-torch = <&msmgpio 19 0>;
+               qcom,gpio-strobe = <&msmgpio 18 0>;
+               linux,default-trigger = "flashlight-trigger";
+           };
+	};
+//[FEATURE]-Add-END by T2M.xiezk
 	i2c@f9925000 {
 		mpu3050@68 {
 			#address-cells = <1>;
@@ -119,6 +120,36 @@
 			bosch,period = <1000>;
 		};
 
+                st480@c {
+                        compatible = "st,st480";
+                        reg = <0x0c>;
+                 };
+		stk3x1x@48 {
+			compatible = "stk,stk3x1x";
+			reg = <0x48>;
+			interrupt-parent = <&msmgpio>;
+			interrupts = <80 0x2>;
+			vdd-supply = <&pm8110_l19>;
+			vio-supply = <&pm8110_l14>;
+			stk,irq-gpio = <&msmgpio 80 0x02>;
+			stk,transmittance = <340>;
+			stk,state-reg = <0x00>;
+			stk,psctrl-reg = <0x71>;
+			stk,alsctrl-reg = <0x38>;
+			stk,ledctrl-reg = <0xFF>;
+			stk,wait-reg = <0x07>;
+			stk,ps-thdh = <150>;
+			stk,ps-thdl = <100>;
+			stk,use-fir;
+		};
+		bma2x2@18 {
+			compatible = "bosch,bma2x2";
+			reg = <0x18>;
+			interrupt-parent = <&msmgpio>;
+			interrupts = <81 0x2>;
+			vdd-supply = <&pm8110_l19>;
+			vio-supply = <&pm8110_l14>;
+		};
 		mma8x5x@1d {
 			reg = <0x1d>;
 			compatible = "fsl,mma8x5x";
@@ -158,6 +189,18 @@
 			interrupts = <77 75 0>;
 			qcom,clk-gpio = <&pm8110_gpios 1 0>;
 		};
+	};
+
+	i2c@f9926000{	
+		nfc-pn547@2b {
+			 compatible = "nfc-pn547";
+			 reg = <0x2b>;
+			 qcom,irq-gpio = <&msmgpio 77 0x00>;
+			 qcom,enable-gpio = <&msmgpio 93 0x00>;
+			 qcom,firm-gpio = <&msmgpio 83 0x00>;
+			 interrupt-parent = <&msmgpio>;	
+			 interrupts = <77 0>;
+                };
 	};
 
 	gen-vkeys {
@@ -207,12 +250,13 @@
         qcom,audio-routing =
             "RX_BIAS", "MCLK",
             "INT_LDO_H", "MCLK",
-            "MIC BIAS External", "Handset Mic",
+            "Lineout amp", "LINEOUT",
+            "MIC BIAS Internal1", "Handset Mic",
             "MIC BIAS Internal2", "Headset Mic",
-            "MIC BIAS External", "Secondary Mic",
-            "AMIC1", "MIC BIAS External",
-            "AMIC2", "MIC BIAS Internal2",
-            "AMIC3", "MIC BIAS External";
+            "AMIC1", "MIC BIAS Internal1",
+            "AMIC2", "MIC BIAS Internal2";
+
+        qcom,ext-spk-amp-gpio = <&msmgpio 92 0x0>;
     };
 };
 
@@ -309,6 +353,18 @@
 				qcom,mode = "pwm";
 			};
 		};
+
+                qcom,leds@1000 {
+                        status = "okay";
+                        qcom,led_charger {
+                                label = "charger_light";
+                                linux,name = "charger_light";
+                                linux,default-trigger = "chgl-trigger";
+                                qcom,default-state = "off";
+                                qcom,max-current = <40>;
+                                qcom,id = <0x08>;
+                        };
+                };
 	};
 };
 
@@ -376,10 +432,11 @@
 
 &pm8110_chg {
 	status = "ok";
-	qcom,charging-disabled;
+//	qcom,charging-disabled;
 
 	qcom,chgr@1000 {
 		status = "ok";
+		qcom,tchg-mins = <250>;
 	};
 
 	qcom,buck@1100 {
@@ -465,10 +522,10 @@
 };
 
 &mdss_dsi0 {
-	qcom,dsi-pref-prim-pan = <&dsi_truly_wvga_vid>;
+	qcom,dsi-pref-prim-pan = <&dsi_tianma_tm040ydh65_ili9806c_wvga_video>;
 };
 
-&dsi_truly_wvga_vid {
+&dsi_tianma_tm040ydh65_ili9806c_wvga_video {
 	qcom,cont-splash-enabled;
 };
 

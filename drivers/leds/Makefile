@@ -55,7 +55,9 @@ obj-$(CONFIG_LEDS_QCIBL)		+= leds-qci-backlight.o
 obj-$(CONFIG_LEDS_MSM_PDM)		+= leds-msm-pdm.o
 obj-$(CONFIG_LEDS_MSM_TRICOLOR)		+= leds-msm-tricolor.o
 obj-$(CONFIG_LEDS_MSM_GPIO_FLASH)	+= leds-msm-gpio-flash.o
-
+#//[FEATURE]-Add-BEGIN by T2M.xiezk, 20/01/2015,PR908442 add flash led into kernel for foxone-l
+obj-$(CONFIG_AS3647)                    += leds-as364x.o
+#//[FEATURE]-Add-END by T2M.xiezk, 20/01/2015
 # LED SPI Drivers
 obj-$(CONFIG_LEDS_DAC124S085)		+= leds-dac124s085.o
 

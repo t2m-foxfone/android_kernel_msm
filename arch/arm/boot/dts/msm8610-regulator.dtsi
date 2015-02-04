@@ -254,17 +254,17 @@
 			status = "okay";
 		};
 	};
-
+//[FEATURE]-Add-BEGIN by T2M.xiezk, 19/01/2015,PR907070 add rear camera into kernel for foxone-l
 	rpm-regulator-ldoa7 {
 		status = "okay";
 		pm8110_l7: regulator-l7 {
-			regulator-min-microvolt = <2050000>;
+			regulator-min-microvolt = <1050000>;
 			regulator-max-microvolt = <2050000>;
-			qcom,init-voltage = <2050000>;
+			qcom,init-voltage = <1500000>;
 			status = "okay";
 		};
 	};
-
+//[FEATURE]-Add-END by T2M.xiezk
 	rpm-regulator-ldoa8 {
 		status = "okay";
 		pm8110_l8: regulator-l8 {
