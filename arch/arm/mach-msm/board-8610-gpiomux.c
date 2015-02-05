@@ -210,6 +210,7 @@ static struct msm_gpiomux_config msm_lcd_configs[] __initdata = {
 			[GPIOMUX_SUSPENDED] = &lcd_en_sus_cfg,
 		},
 	},
+/*
 	{
 		.gpio = 7,
 		.settings = {
@@ -217,6 +218,7 @@ static struct msm_gpiomux_config msm_lcd_configs[] __initdata = {
 			[GPIOMUX_SUSPENDED] = &lcd_en_sus_cfg,
 		},
 	},
+*/
 	{
 		.gpio = 12,
 		.settings = {
@@ -596,6 +598,22 @@ static struct msm_gpiomux_config msm_sensor_configs[] __initdata = {
 			[GPIOMUX_SUSPENDED] = &gpio_suspend_config[1],
 		},
 	},
+//Add-BEGIN by T2M-WU YiXiang bug#922490 5/1/2015 for camera gpio
+	{
+		.gpio = 7, /* AVDD_GPIO_EN */
+		.settings = {
+			[GPIOMUX_ACTIVE]    = &cam_settings[3],
+			[GPIOMUX_SUSPENDED] = &gpio_suspend_config[1],
+		},
+	},
+	{
+		.gpio = 6, /* AF_GPIO_EN */
+		.settings = {
+			[GPIOMUX_ACTIVE]    = &cam_settings[3],
+			[GPIOMUX_SUSPENDED] = &gpio_suspend_config[1],
+		},
+	},
+//Add-END by T2M-WU YiXiang
 };
 
 static struct msm_gpiomux_config msm_keypad_configs[] __initdata = {

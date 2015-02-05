@@ -43,7 +43,7 @@
 	};
 */
 	actuator0: qcom,actuator@6e {
-		cell-index = <3>;
+		cell-index = <4>; //actuator driver ic match the fourth head file by wuyixiang
 		reg = <0x18>;
 		compatible = "qcom,actuator";
 		qcom,cci-master = <0>;
@@ -169,7 +169,9 @@
                 qcom,slave-id = <0x6c 0x300a 0x5648>;
                 qcom,csiphy-sd-index = <0>;
                 qcom,csid-sd-index = <0>;
- //       qcom,actuator-src = <&actuator0>
+//Add-BEGIN by T2M-WU YiXiang bug#922490 5/1/2015 for actuator
+				qcom,actuator-src = <&actuator0>;
+//Add-END by T2M-WU YiXiang
 //[FEATURE]-Add-BEGIN by T2M.xiezk, 20/01/2015,PR908442 add flash led into kernel for foxone-l
                 qcom,led-flash-src = <&led_flash0>;
 //[FEATURE]-Add-END by T2M.xiezk
