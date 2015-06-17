@@ -674,6 +674,9 @@ qpnp_chg_is_boost_en_set(struct qpnp_chg_chip *chip)
 	u8 boost_en_ctl;
 	int rc;
 
+        /*return 0 when boost is not used*/
+        if (!chip->boost_base)
+		return 0;
 	rc = qpnp_chg_read(chip, &boost_en_ctl,
 		chip->boost_base + BOOST_ENABLE_CONTROL, 1);
 	if (rc) {
